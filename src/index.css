@@ -3,6 +3,23 @@
   flex-wrap: wrap;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(32, 35, 41);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(255, 152, 0);
+}
+
+
 .background-characters {
   background: rgb(32, 35, 41); 
 }
