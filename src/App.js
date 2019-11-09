@@ -1,25 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ApolloClient, { gql } from "apollo-boost";
+import { useQuery, ApolloProvider } from "@apollo/react-hooks";
+
+import Character from "./components/Character";
+import Header from "./components/Header";
+
+
+const client = new ApolloClient({
+  uri: 'https://rickandmortyapi.com/graphql/'
+});
 
 function App() {
+
+  const Characters = () => {
+    const query = gql`
+      {
+        characters {
+          results {
+            id
+            name
+            image
+            origin {
+              name
+            }
+            species
+            gender
+            status
+            location {
+              name
+            }
+          }
+        }
+      }
+    `;
+
+    const { loading, error, data } = useQuery(query);
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p> {error} </p>;
+
+    return data.characters.results.map(character => <Character key={character.id} character={character} />);
+
+
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client} >
+      <Header />
+      <div className="character-list mt-3 bg-dark">
+        <Characters />
+      </div>
+    </ApolloProvider>
   );
 }
 
