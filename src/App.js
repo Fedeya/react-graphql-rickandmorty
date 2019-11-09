@@ -36,7 +36,7 @@ function App() {
 
     const { loading, error, data } = useQuery(query);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <p class="text-white">Loading...</p>;
     if (error) return <p> {error} </p>;
 
     return data.characters.results.map(character => <Character key={character.id} character={character} />);
@@ -47,7 +47,7 @@ function App() {
   return (
     <ApolloProvider client={client} >
       <Header />
-      <div className="character-list mt-3 bg-dark">
+      <div className="character-list  background-characters">
         <Characters />
       </div>
     </ApolloProvider>

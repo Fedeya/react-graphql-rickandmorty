@@ -3,8 +3,13 @@
   flex-wrap: wrap;
 }
 
+.background-characters {
+  background: rgb(32, 35, 41); 
+}
+
 .character {
   margin: 10px;
+  position: static;
 }
 
 .character-header {
@@ -41,6 +46,8 @@
   color: rgb(158, 158, 158);
   text-transform: uppercase;
   font-size: 0.7rem;
+  width: 50%;
+  text-align: left;
 }
 
 .character-value {
@@ -56,7 +63,8 @@
   position: static;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  padding-bottom: 10px ;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .last-key {
